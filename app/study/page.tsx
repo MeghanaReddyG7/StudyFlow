@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import StudyFlowChat from "@/components/StudyFlowChat";
 
 export default function Study() {
   const [timeLeft, setTimeLeft] = useState(45 * 60);
@@ -35,6 +36,8 @@ export default function Study() {
           Test Timer
         </button>
       </div>
+
+      <StudyFlowChat />
     </main>
   );
 }
