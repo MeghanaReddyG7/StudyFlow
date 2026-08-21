@@ -3,6 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
 import ReactMarkdown from "react-markdown";
+import StudyProgressCard from "./StudyProgressCard";
+
+type StudyProgressResult = {
+  subject: string;
+  completed: number;
+  total: number;
+  percentage: number;
+  status: string;
+};
 
 export default function StudyFlowChat() {
   const [input, setInput] = useState("");
@@ -147,9 +156,10 @@ export default function StudyFlowChat() {
                         : "rounded-bl-md border border-gray-200 bg-white text-gray-700"
                     }`}
                   >
-                    {message.parts.map((part, index) =>
-                      part.type === "text" ? (
-                        isUser ? (
+                    {message.parts.map((part, index) => {
+                      // Text part
+                      if (part.type === "text") {
+                        return isUser ? (
                           <span
                             key={index}
                             className="whitespace-pre-wrap break-words"
@@ -239,9 +249,68 @@ export default function StudyFlowChat() {
                           >
                             {part.text}
                           </ReactMarkdown>
-                        )
-                      ) : null,
-                    )}
+                        );
+                      }
+
+                      // Tool lifecycle
+                      if (part.type === "tool-getStudyProgress") {
+                        // State 1: Input is streaming
+                        if (part.state === "input-streaming") {
+                          return (
+                            <div
+                              key={index}
+                              className="mt-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-600"
+                            >
+                              🔄 Preparing your study progress analysis...
+                            </div>
+                          );
+                        }
+
+                        // State 2: Input is available
+                        if (part.state === "input-available") {
+                          return (
+                            <div
+                              key={index}
+                              className="mt-3 rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-3 text-sm text-indigo-700"
+                            >
+                              ⚙️ Analyzing your study progress...
+                            </div>
+                          );
+                        }
+
+                        // State 3: Tool output is available
+                        if (part.state === "output-available") {
+                          const result =
+                            part.output as StudyProgressResult;
+
+                          return (
+                            <StudyProgressCard
+                              key={index}
+                              subject={result.subject}
+                              completed={result.completed}
+                              total={result.total}
+                              percentage={result.percentage}
+                              status={result.status}
+                            />
+                          );
+                        }
+
+                        // State 4: Tool output error
+                        if (part.state === "output-error") {
+                          return (
+                            <div
+                              key={index}
+                              className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                            >
+                              ❌ I couldn't load the study progress right
+                              now.
+                            </div>
+                          );
+                        }
+                      }
+
+                      return null;
+                    })}
                   </div>
                 </div>
               </div>
@@ -249,24 +318,23 @@ export default function StudyFlowChat() {
           })
         )}
 
-        {/* Thinking indicator */}
-        {status === "submitted" && (
-          <div className="flex justify-start">
-            <div>
-              <p className="mb-1 px-1 text-xs font-semibold text-gray-500">
-                Study Flow AI
-              </p>
+        {/* General AI thinking indicator */}
+{status === "submitted" && (
+  <div className="flex justify-start">
+    <div>
+      <p className="mb-1 px-1 text-xs font-semibold text-gray-500">
+        Study Flow AI
+      </p>
 
-              <div className="rounded-2xl rounded-bl-md border border-gray-200 bg-white px-4 py-3 shadow-sm">
-                <div className="flex items-center gap-1">
-                  <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:-0.3s]" />
-                  <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:-0.15s]" />
-                  <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400" />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+      <div className="rounded-2xl rounded-bl-md border border-gray-200 bg-white px-4 py-3 shadow-sm">
+        <div className="flex items-center gap-2 text-sm text-gray-500">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-indigo-400" />
+          <span>Thinking...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
       </div>
 
       {/* Input */}

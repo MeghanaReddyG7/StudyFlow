@@ -9,6 +9,8 @@ import {
   studyFlowSystemPrompt,
 } from "@/lib/ai";
 
+import { getStudyProgressTool } from "@/lib/tools/get-study-progress";
+
 // Allow the AI response to stream for up to 30 seconds.
 export const maxDuration = 30;
 
@@ -19,7 +21,12 @@ export async function POST(req: Request) {
     const result = streamText({
       model: studyFlowModel,
       system: studyFlowSystemPrompt,
+
       messages: await convertToModelMessages(messages),
+
+      tools: {
+        getStudyProgress: getStudyProgressTool,
+      },
     });
 
     return result.toUIMessageStreamResponse();
