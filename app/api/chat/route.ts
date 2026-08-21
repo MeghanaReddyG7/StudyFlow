@@ -15,6 +15,7 @@ import { getStudyProgressTool } from "@/lib/tools/get-study-progress";
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
+  
   try {
     const { messages }: { messages: UIMessage[] } = await req.json();
 

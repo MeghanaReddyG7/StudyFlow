@@ -19,7 +19,14 @@ export default function StudyFlowChat() {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const shouldAutoScrollRef = useRef(true);
 
-  const { messages, sendMessage, status, stop } = useChat();
+  const {
+    messages,
+    sendMessage,
+    status,
+    stop,
+    error,
+    reload,
+  } = useChat();
 
   const isStreaming = status === "streaming";
 
@@ -58,7 +65,7 @@ export default function StudyFlowChat() {
   ) => {
     event.preventDefault();
 
-    if (!input.trim() || isStreaming) {
+    if (!input.trim() || isStreaming || error) {
       return;
     }
 
@@ -319,23 +326,48 @@ export default function StudyFlowChat() {
         )}
 
         {/* General AI thinking indicator */}
-{status === "submitted" && (
-  <div className="flex justify-start">
-    <div>
-      <p className="mb-1 px-1 text-xs font-semibold text-gray-500">
-        Study Flow AI
-      </p>
+        {status === "submitted" && (
+          <div className="flex justify-start">
+            <div>
+              <p className="mb-1 px-1 text-xs font-semibold text-gray-500">
+                Study Flow AI
+              </p>
 
-      <div className="rounded-2xl rounded-bl-md border border-gray-200 bg-white px-4 py-3 shadow-sm">
-        <div className="flex items-center gap-2 text-sm text-gray-500">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-indigo-400" />
-          <span>Thinking...</span>
+              <div className="rounded-2xl rounded-bl-md border border-gray-200 bg-white px-4 py-3 shadow-sm">
+                <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-indigo-400" />
+                  <span>Thinking...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Chat Error */}
+      {error && (
+        <div className="border-t border-red-200 bg-red-50 px-4 py-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-red-800">
+                Something went wrong
+              </p>
+
+              <p className="mt-1 text-xs text-red-600">
+                We couldn't generate a response. Please try again.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => reload()}
+              className="shrink-0 rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
+            >
+              Retry
+            </button>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-)}
-      </div>
+      )}
 
       {/* Input */}
       <div className="border-t border-gray-200 bg-white p-4">
@@ -348,7 +380,7 @@ export default function StudyFlowChat() {
             onChange={(event) => setInput(event.target.value)}
             placeholder="Ask a study question..."
             className="min-w-0 flex-1 rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-            disabled={isStreaming}
+            disabled={isStreaming || !!error}
           />
 
           {isStreaming ? (
@@ -362,7 +394,7 @@ export default function StudyFlowChat() {
           ) : (
             <button
               type="submit"
-              disabled={!input.trim()}
+              disabled={!input.trim() || !!error}
               className="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Send
