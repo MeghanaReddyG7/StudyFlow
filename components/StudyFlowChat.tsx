@@ -25,7 +25,7 @@ export default function StudyFlowChat() {
     status,
     stop,
     error,
-    reload,
+    regenerate,
   } = useChat();
 
   const isStreaming = status === "streaming";
@@ -360,7 +360,7 @@ export default function StudyFlowChat() {
 
             <button
               type="button"
-              onClick={() => reload()}
+              onClick={() => regenerate()}
               className="shrink-0 rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
             >
               Retry
