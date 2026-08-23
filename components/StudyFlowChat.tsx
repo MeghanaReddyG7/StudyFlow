@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
 import ReactMarkdown from "react-markdown";
 import StudyProgressCard from "./StudyProgressCard";
+import AnimatedSendButton from "./AnimatedSendButton";
+
 
 type StudyProgressResult = {
   subject: string;
@@ -80,6 +82,7 @@ export default function StudyFlowChat() {
   };
 
   return (
+    <>
     <section className="mt-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
       {/* Header */}
       <div className="border-b border-gray-200 px-6 py-5">
@@ -383,23 +386,13 @@ export default function StudyFlowChat() {
             disabled={isStreaming || !!error}
           />
 
-          {isStreaming ? (
-            <button
-              type="button"
-              onClick={stop}
-              className="rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
-            >
-              Stop
-            </button>
-          ) : (
-            <button
-              type="submit"
-              disabled={!input.trim() || !!error}
-              className="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              Send
-            </button>
-          )}
+          <AnimatedSendButton
+  disabled={!input.trim()}
+  isLoading={isStreaming}
+  hasError={!!error}
+  onRetry={() => regenerate()}
+  onStop={stop}
+/>
         </form>
 
         <p className="mt-2 text-center text-xs text-gray-400">
@@ -407,5 +400,7 @@ export default function StudyFlowChat() {
         </p>
       </div>
     </section>
+    
+    </>
   );
 }
