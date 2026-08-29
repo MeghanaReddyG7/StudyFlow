@@ -131,3 +131,22 @@ The AI tool can be demonstrated by asking:
 > Show me my study progress for Mathematics.
 
 The AI invokes `getStudyProgress`, receives structured data, and renders the result using the Study Progress Card UI.
+
+
+## 3D Focus Experience
+
+StudyFlow includes an interactive 3D focus experience built with React Three Fiber and Three.js.
+
+### Interactions
+- Orbit and zoom the 3D object using mouse or touch.
+- Switch between Focus, Deep Work, and Break modes to change the object's material.
+- Start and pause the focus animation.
+- Reduced-motion preferences disable the continuous 3D animation.
+
+### Performance
+The 3D scene uses lightweight procedural geometry instead of a large external model. The canvas is dynamically loaded on the 3D page, uses a limited device pixel ratio, and disables antialiasing to reduce GPU load on mobile devices.
+
+A static loading fallback is provided so the page remains useful while the 3D experience loads.
+
+### What I'd Add With More Time
+I would add a compressed GLB study-desk scene, richer lighting/environment effects, and connect the 3D experience directly to the user's StudyFlow timer and study-session progress.
