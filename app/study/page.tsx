@@ -1,13 +1,39 @@
+
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StudyFlowChat from "@/components/StudyFlowChat";
 
 export default function Study() {
   const [timeLeft, setTimeLeft] = useState(45 * 60);
+  const [isRunning, setIsRunning] = useState(false);
+
+  useEffect(() => {
+    if (!isRunning) {
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((time) => {
+        if (time <= 0) {
+          clearInterval(timer);
+          setIsRunning(false);
+          return 0;
+        }
+
+        return time - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isRunning]);
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
+
+  const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
+    seconds,
+  ).padStart(2, "0")}`;
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-10">
@@ -24,20 +50,25 @@ export default function Study() {
           Focus on your task. You've got this!
         </p>
 
-        <div className="my-10 text-7xl font-bold tracking-wider">
-          {String(minutes).padStart(2, "0")}:
-          {String(seconds).padStart(2, "0")}
-        </div>
-
+        <div
+          data-testid="study-timer"
+          className="my-10 text-7xl font-bold tracking-wider"
+        >
+          {formattedTime}
+        </div>        
         <button
-          onClick={() => setTimeLeft((time) => Math.max(0, time - 60))}
+          type="button"
+          onClick={() => setTimeLeft(44 * 60)}
           className="rounded-lg bg-indigo-600 px-6 py-3 font-medium text-white hover:bg-indigo-700"
         >
-          Test Timer
+        Test Timer
         </button>
+
+
       </div>
 
       <StudyFlowChat />
     </main>
   );
 }
+

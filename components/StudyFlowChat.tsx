@@ -378,10 +378,17 @@ export default function StudyFlowChat() {
           onSubmit={handleSubmit}
           className="flex flex-col gap-3 sm:flex-row"
         >
+          <label htmlFor="study-question" className="sr-only">
+  Ask a study question
+</label>
+
+
           <input
+            id="study-question"
             value={input}
             onChange={(event) => setInput(event.target.value)}
             placeholder="Ask a study question..."
+            required
             className="min-w-0 flex-1 rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
             disabled={isStreaming || !!error}
           />
