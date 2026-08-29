@@ -160,6 +160,7 @@ export default function StudyFlowChat() {
 
                   {/* Message bubble */}
                   <div
+                    aria-live={isUser ? undefined : "polite"}
                     className={`min-w-0 max-w-full rounded-2xl px-4 py-3 text-sm leading-7 shadow-sm ${
                       isUser
                         ? "rounded-br-md bg-indigo-600 text-white"
