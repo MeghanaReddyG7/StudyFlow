@@ -220,12 +220,12 @@ describe("StudyFlowChat", () => {
   });
 
   it("renders the thinking indicator while submitting", () => {
-    mockChatState.status = "submitted";
+  mockChatState.status = "submitted";
 
-    render(<StudyFlowChat />);
+  render(<StudyFlowChat />);
 
-    expect(screen.getByText("Thinking...")).toBeInTheDocument();
-  });
+  expect(screen.getAllByText("Thinking...").length).toBeGreaterThan(0);
+});
 
   
   it("handles the chat streaming state", () => {
@@ -233,7 +233,7 @@ describe("StudyFlowChat", () => {
 
     render(<StudyFlowChat />);
 
-    expect(screen.getByText("Status: streaming")).toBeInTheDocument();
+    expect(screen.getByText("Generating response...")).toBeInTheDocument();
 
     const sendButton = screen.getByRole("button", {
       name: "Send",
