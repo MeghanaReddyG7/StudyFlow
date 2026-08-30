@@ -11,13 +11,67 @@ import {
 
 import { getStudyProgressTool } from "@/lib/tools/get-study-progress";
 
-// Allow the AI response to stream for up to 30 seconds.
+// Prevent long-running AI requests in production.
 export const maxDuration = 30;
 
+// Keep requests reasonably small so strangers cannot send huge prompts.
+const MAX_MESSAGES = 20;
+const MAX_MESSAGE_LENGTH = 4000;
+
 export async function POST(req: Request) {
-  
   try {
     const { messages }: { messages: UIMessage[] } = await req.json();
+
+    // Validate the request body.
+    if (!Array.isArray(messages)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid messages format." }),
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+    }
+
+    // Limit conversation size.
+    if (messages.length > MAX_MESSAGES) {
+      return new Response(
+        JSON.stringify({
+          error: `Too many messages. Please start a new conversation after ${MAX_MESSAGES} messages.`,
+        }),
+        {
+          status: 413,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+    }
+
+    // Limit the size of individual text messages.
+    for (const message of messages) {
+      if (message.role !== "user") continue;
+
+      const textLength = message.parts
+        .filter((part) => part.type === "text")
+        .reduce((total, part) => total + part.text.length, 0);
+
+      if (textLength > MAX_MESSAGE_LENGTH) {
+        return new Response(
+          JSON.stringify({
+            error: `Your message is too long. Please keep it under ${MAX_MESSAGE_LENGTH} characters.`,
+          }),
+          {
+            status: 413,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          },
+        );
+      }
+    }
 
     const result = streamText({
       model: studyFlowModel,

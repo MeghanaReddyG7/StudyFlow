@@ -13,7 +13,7 @@ test("user can start a study session and interact with the timer", async ({
   ).toBeVisible();
 
   await expect(
-    page.getByText("45 minutes"),
+    page.getByText("45 minutes" , { exact: true }),
   ).toBeVisible();
 
   // Start the study session
