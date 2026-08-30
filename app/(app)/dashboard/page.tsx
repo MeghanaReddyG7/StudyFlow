@@ -2,215 +2,236 @@
 
 import Link from "next/link";
 
+const stats = [
+  {
+    label: "Today's Progress",
+    value: "60%",
+    detail: "3 / 5 sessions",
+    progress: "60%",
+    accent: "bg-indigo-600",
+    detailColor: "text-indigo-600 dark:text-indigo-400",
+  },
+  {
+    label: "Learning Progress",
+    value: "72%",
+    detail: "On track",
+    progress: "72%",
+    accent: "bg-emerald-500",
+    detailColor: "text-emerald-600 dark:text-emerald-400",
+  },
+  {
+    label: "Study Goal",
+    value: "3.5h",
+    detail: "of 4h",
+    progress: "87%",
+    accent: "bg-cyan-500",
+    detailColor: "text-cyan-600 dark:text-cyan-400",
+  },
+];
+
 export default function Dashboard() {
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <section className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-white px-6 py-8 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_10px_30px_rgba(15,23,42,0.04)] dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_1px_2px_rgba(0,0,0,0.2),0_10px_30px_rgba(0,0,0,0.18)] sm:px-8 sm:py-10">
+          <div className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-indigo-100/80 blur-3xl dark:bg-indigo-900/30" />
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_top_left,_rgba(79,70,229,0.06),_transparent_42%)] dark:bg-[radial-gradient(circle_at_top_left,_rgba(129,140,248,0.08),_transparent_42%)]" />
 
-        {/* Welcome */}
-        <section>
-          <p className="text-sm font-semibold uppercase tracking-wider text-indigo-600">
-            Dashboard
-          </p>
+          <div className="relative">
+            <div className="flex items-center gap-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-indigo-500" />
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-indigo-600 dark:text-indigo-400">
+                Dashboard
+              </p>
+            </div>
 
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Good morning 👋
-          </h1>
+            <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">
+              Good morning <span aria-hidden="true">👋</span>
+            </h1>
 
-          <p className="mt-2 text-slate-500">
-            Let's make today productive.
-          </p>
+            <p className="mt-2 max-w-xl text-sm text-slate-500 dark:text-slate-400 sm:text-base">
+              Keep your momentum going. You&apos;re making solid progress today.
+            </p>
+          </div>
         </section>
 
-        {/* Stats */}
-        <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <section className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(15,23,42,0.05)] dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_1px_2px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_12px_28px_rgba(0,0,0,0.2)]"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                  {stat.label}
+                </p>
+                <span className="h-2.5 w-2.5 rounded-full bg-slate-200 transition-colors group-hover:bg-indigo-400 dark:bg-slate-700" />
+              </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-medium text-slate-500">
-              Today's Progress
-            </p>
+              <div className="mt-5 flex items-end justify-between gap-3">
+                <p className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+                  {stat.value}
+                </p>
+                <p className={`text-sm font-semibold ${stat.detailColor}`}>
+                  {stat.detail}
+                </p>
+              </div>
 
-            <div className="mt-4 flex items-end justify-between">
-              <p className="text-3xl font-bold text-slate-900">
-                60%
-              </p>
-
-              <p className="text-sm font-medium text-indigo-600">
-                3 / 5 sessions
-              </p>
+              <div
+                className="mt-5 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800"
+                aria-label={`${stat.label}: ${stat.progress}`}
+              >
+                <div
+                  className={`h-full rounded-full ${stat.accent} transition-all duration-700`}
+                  style={{ width: stat.progress }}
+                />
+              </div>
             </div>
-
-            <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-100">
-              <div className="h-full w-3/5 rounded-full bg-indigo-600" />
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-medium text-slate-500">
-              Learning Progress
-            </p>
-
-            <div className="mt-4 flex items-end justify-between">
-              <p className="text-3xl font-bold text-slate-900">
-                72%
-              </p>
-
-              <p className="text-sm font-medium text-emerald-600">
-                On track
-              </p>
-            </div>
-
-            <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-100">
-              <div className="h-full w-[72%] rounded-full bg-emerald-500" />
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-medium text-slate-500">
-              Study Goal
-            </p>
-
-            <div className="mt-4 flex items-end justify-between">
-              <p className="text-3xl font-bold text-slate-900">
-                3.5h
-              </p>
-
-              <p className="text-sm font-medium text-slate-500">
-                of 4h
-              </p>
-            </div>
-
-            <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-100">
-              <div className="h-full w-[87%] rounded-full bg-cyan-500" />
-            </div>
-          </div>
-
+          ))}
         </section>
 
-        {/* Current Session */}
-        <section className="mt-6 overflow-hidden rounded-2xl bg-indigo-600 p-6 text-white shadow-sm sm:p-8">
+        <section className="relative mt-6 overflow-hidden rounded-[28px] bg-indigo-600 p-6 text-white shadow-[0_20px_45px_rgba(79,70,229,0.18)] dark:bg-indigo-700 dark:shadow-[0_20px_45px_rgba(0,0,0,0.25)] sm:p-8">
+          <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 left-1/3 h-48 w-48 rounded-full bg-cyan-300/10 blur-3xl" />
 
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-
+          <div className="relative flex flex-col gap-7 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-indigo-200">
-                Current Session
-              </p>
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-emerald-300" />
+                <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-indigo-200">
+                  Up next
+                </p>
+              </div>
 
-              <h2 className="mt-2 text-3xl font-bold">
+              <h2 className="mt-3 text-3xl font-bold tracking-tight">
                 Java Arrays
               </h2>
 
-              <p className="mt-2 text-indigo-100">
+              <p className="mt-2 text-sm text-indigo-100 sm:text-base">
                 45 minutes of focused study
               </p>
             </div>
 
             <Link
               href="/study"
-              className="inline-flex w-fit items-center rounded-xl bg-white px-6 py-3 font-semibold text-indigo-600 transition hover:scale-105"
+              className="group inline-flex w-fit items-center gap-3 rounded-xl bg-white px-5 py-3 font-semibold text-indigo-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-50 hover:shadow-md active:translate-y-0"
             >
-              Start Session →
+              Start Session
+              <span className="text-lg transition-transform duration-200 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
-
           </div>
         </section>
 
-        {/* Schedule */}
-        <section className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-
-          <div className="flex items-center justify-between">
+        <section className="mt-6 rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04)] dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_1px_2px_rgba(0,0,0,0.2)] sm:p-8">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-indigo-600">
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-indigo-600 dark:text-indigo-400">
                 Schedule
               </p>
 
-              <h2 className="mt-1 text-xl font-bold text-slate-900">
-                Today's Learning Plan
+              <h2 className="mt-1 text-xl font-bold text-slate-900 dark:text-slate-100">
+                Today&apos;s Learning Plan
               </h2>
             </div>
 
             <Link
               href="/timetable"
-              className="text-sm font-semibold text-indigo-600 hover:text-indigo-700"
+              className="w-fit text-sm font-semibold text-indigo-600 transition-colors hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
             >
               View timetable →
             </Link>
           </div>
 
-          <div className="mt-6 divide-y divide-slate-100">
-
-            <div className="flex items-center gap-4 py-4">
-              <div className="w-20 shrink-0 text-sm font-medium text-slate-500">
+          <div className="mt-6 space-y-2">
+            <div className="group flex items-center gap-4 rounded-2xl px-3 py-4 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
+              <div className="w-20 shrink-0 text-sm font-medium text-slate-400 dark:text-slate-500">
                 9:00 AM
               </div>
 
-              <div className="flex-1">
-                <p className="font-semibold text-slate-900">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-sm font-bold text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400">
+                ✓
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-slate-900 dark:text-slate-100">
                   Java Arrays
                 </p>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-slate-500 dark:text-slate-400">
                   Completed
                 </p>
               </div>
 
-              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-600">
+              <span className="rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-semibold text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400">
                 Done
               </span>
             </div>
 
-            <div className="flex items-center gap-4 py-4">
-              <div className="w-20 shrink-0 text-sm font-medium text-slate-500">
+            <div className="group flex items-center gap-4 rounded-2xl px-3 py-4 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
+              <div className="w-20 shrink-0 text-sm font-medium text-slate-400 dark:text-slate-500">
                 10:00 AM
               </div>
 
-              <div className="flex-1">
-                <p className="font-semibold text-slate-900">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                ☕
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-slate-900 dark:text-slate-100">
                   Break
                 </p>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-slate-500 dark:text-slate-400">
                   15 minutes
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 py-4">
-              <div className="w-20 shrink-0 text-sm font-medium text-slate-500">
+            <div className="group flex items-center gap-4 rounded-2xl border border-indigo-100 bg-indigo-50/60 px-3 py-4 transition-all hover:bg-indigo-50 dark:border-indigo-900 dark:bg-indigo-950/40 dark:hover:bg-indigo-950/60">
+              <div className="w-20 shrink-0 text-sm font-semibold text-indigo-600 dark:text-indigo-400">
                 10:15 AM
               </div>
 
-              <div className="flex-1">
-                <p className="font-semibold text-slate-900">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-sm font-bold text-indigo-600 dark:bg-indigo-900/60 dark:text-indigo-300">
+                →
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-slate-900 dark:text-slate-100">
                   Java Strings
                 </p>
-                <p className="text-sm text-slate-500">
+
+                <p className="text-sm text-slate-500 dark:text-slate-400">
                   45 minutes
                 </p>
               </div>
 
-              <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-600">
+              <span className="rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">
                 Next
               </span>
             </div>
 
-            <div className="flex items-center gap-4 py-4">
-              <div className="w-20 shrink-0 text-sm font-medium text-slate-500">
+            <div className="group flex items-center gap-4 rounded-2xl px-3 py-4 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
+              <div className="w-20 shrink-0 text-sm font-medium text-slate-400 dark:text-slate-500">
                 11:15 AM
               </div>
 
-              <div className="flex-1">
-                <p className="font-semibold text-slate-900">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                3
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-slate-900 dark:text-slate-100">
                   DSA Practice
                 </p>
-                <p className="text-sm text-slate-500">
+
+                <p className="text-sm text-slate-500 dark:text-slate-400">
                   60 minutes
                 </p>
               </div>
             </div>
-
           </div>
         </section>
-
       </div>
     </main>
   );
