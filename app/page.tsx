@@ -1,14 +1,14 @@
-"use client";
+
 
 import Link from "next/link";
-import ShaderHero from "@/components/ShaderHero";
+import LazyShaderHero from "@/components/LazyShaderHero";
 
 export default function HomePage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
       {/* Shader background */}
       <div className="absolute inset-0">
-        <ShaderHero showContent={false} />
+        <LazyShaderHero />
       </div>
 
       {/* Soft dark overlays */}
@@ -67,7 +67,7 @@ export default function HomePage() {
           </div>
 
           {/* Heading */}
-          <h1 className="text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-white sm:text-7xl lg:text-[88px] animate-[heroReveal_1.1s_cubic-bezier(0.22,1,0.36,1)_0.25s_both]">
+          <h1 className="text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-white sm:text-7xl lg:text-[88px]">
             Find your focus.
             <br />
 
