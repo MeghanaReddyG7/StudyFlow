@@ -191,7 +191,7 @@ function ShaderPlane({
   );
 
   useEffect(() => {
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
 
     uniforms.u_resolution.value.set(
       size.width * pixelRatio,
@@ -319,7 +319,7 @@ export default function ShaderHero({
       <div className="absolute inset-0">
         <Canvas
           frameloop={shouldAnimate ? "always" : "demand"}
-          dpr={[1, 1.5]}
+          dpr={[1, 1.25]}
           camera={{ position: [0, 0, 1] }}
           gl={{
             antialias: false,
