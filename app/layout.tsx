@@ -6,18 +6,6 @@ export const metadata: Metadata = {
   description: "A study planner that helps students stay consistent.",
 };
 
-const themeScript = `
-  (function() {
-    try {
-      const storedTheme = localStorage.getItem("studyflow-theme");
-      const theme = storedTheme || "light";
-      document.documentElement.setAttribute("data-theme", theme);
-    } catch (error) {
-      document.documentElement.setAttribute("data-theme", "light");
-    }
-  })();
-`;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,10 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

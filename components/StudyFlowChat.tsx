@@ -6,7 +6,6 @@ import ReactMarkdown from "react-markdown";
 import StudyProgressCard from "./StudyProgressCard";
 import AnimatedSendButton from "./AnimatedSendButton";
 
-
 type StudyProgressResult = {
   subject: string;
   completed: number;
@@ -82,53 +81,85 @@ export default function StudyFlowChat() {
   };
 
   return (
-    <>
-    <section className="mt-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+    <section className="mt-6 overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--surface)] shadow-[var(--shadow-soft)] transition-colors duration-200">
       {/* Header */}
-      <div className="border-b border-gray-200 px-6 py-5">
+      <div className="border-b border-[var(--border)] px-5 py-5 sm:px-6">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-100 text-lg">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-lg text-[var(--primary)] ring-1 ring-indigo-500/10">
             ✦
           </div>
 
           <div className="min-w-0">
-            <h2 className="text-xl font-bold text-gray-900">
+            <h2 className="text-xl font-bold text-[var(--foreground)]">
               Study Flow AI
             </h2>
 
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-[var(--muted)]">
               Your personal study assistant
             </p>
           </div>
         </div>
 
-        <p className="mt-2 text-xs text-gray-400">
-          Status: {status}
-        </p>
+        <div className="mt-4 flex items-center gap-2">
+          <span
+            className={`h-2 w-2 rounded-full ${
+              status === "streaming"
+                ? "animate-pulse bg-indigo-500"
+                : status === "submitted"
+                  ? "animate-pulse bg-amber-500"
+                  : error
+                    ? "bg-red-500"
+                    : "bg-emerald-500"
+            }`}
+          />
+
+          <p className="text-xs font-medium text-[var(--muted)]">
+            {error
+              ? "Connection issue"
+              : status === "streaming"
+                ? "Generating response..."
+                : status === "submitted"
+                  ? "Thinking..."
+                  : "Ready to help"}
+          </p>
+        </div>
       </div>
 
       {/* Messages */}
       <div
         ref={messagesContainerRef}
         onScroll={handleMessagesScroll}
-        className="min-h-80 max-h-[500px] space-y-5 overflow-y-auto bg-gray-50 p-5"
+        className="min-h-80 max-h-[500px] space-y-5 overflow-y-auto bg-[var(--surface-muted)] p-4 sm:p-5"
       >
         {messages.length === 0 ? (
           <div className="flex min-h-64 items-center justify-center text-center">
             <div className="max-w-sm">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100 text-xl">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--primary-soft)] text-xl text-[var(--primary)] ring-1 ring-indigo-500/10">
                 ✦
               </div>
 
-              <h3 className="mt-4 font-semibold text-gray-800">
+              <h3 className="mt-5 text-base font-bold text-[var(--foreground)]">
                 Ready to help you study
               </h3>
 
-              <p className="mt-2 text-sm leading-6 text-gray-500">
-                Ask me to explain a concept, give you an example,
-                create practice questions, or help you understand
-                a difficult topic.
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                Ask me to explain a concept, give you an example, create
+                practice questions, or help you understand a difficult topic.
               </p>
+
+              <div className="mt-5 flex flex-wrap justify-center gap-2">
+                <span className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs font-medium text-[var(--muted)]">
+                  Explain concepts
+                </span>
+
+                <span className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs font-medium text-[var(--muted)]">
+                  Practice questions
+                </span>
+
+                <span className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs font-medium text-[var(--muted)]">
+                  Check progress
+                </span>
+              </div>
             </div>
           </div>
         ) : (
@@ -143,7 +174,7 @@ export default function StudyFlowChat() {
                 }`}
               >
                 <div
-                  className={`min-w-0 w-fit max-w-[85%] ${
+                  className={`min-w-0 w-fit max-w-[88%] ${
                     isUser ? "items-end" : "items-start"
                   }`}
                 >
@@ -152,7 +183,7 @@ export default function StudyFlowChat() {
                     className={`mb-1 px-1 text-xs font-semibold ${
                       isUser
                         ? "text-right text-indigo-600"
-                        : "text-gray-500"
+                        : "text-[var(--muted)]"
                     }`}
                   >
                     {isUser ? "You" : "Study Flow AI"}
@@ -164,7 +195,7 @@ export default function StudyFlowChat() {
                     className={`min-w-0 max-w-full rounded-2xl px-4 py-3 text-sm leading-7 shadow-sm ${
                       isUser
                         ? "rounded-br-md bg-indigo-600 text-white"
-                        : "rounded-bl-md border border-gray-200 bg-white text-gray-700"
+                        : "rounded-bl-md border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)]"
                     }`}
                   >
                     {message.parts.map((part, index) => {
@@ -182,19 +213,19 @@ export default function StudyFlowChat() {
                             key={index}
                             components={{
                               h1: ({ children }) => (
-                                <h1 className="mb-3 mt-2 break-words text-xl font-bold text-gray-900">
+                                <h1 className="mb-3 mt-2 break-words text-xl font-bold text-[var(--foreground)]">
                                   {children}
                                 </h1>
                               ),
 
                               h2: ({ children }) => (
-                                <h2 className="mb-2 mt-3 break-words text-lg font-bold text-gray-900">
+                                <h2 className="mb-2 mt-3 break-words text-lg font-bold text-[var(--foreground)]">
                                   {children}
                                 </h2>
                               ),
 
                               h3: ({ children }) => (
-                                <h3 className="mb-2 mt-3 break-words font-semibold text-gray-900">
+                                <h3 className="mb-2 mt-3 break-words font-semibold text-[var(--foreground)]">
                                   {children}
                                 </h3>
                               ),
@@ -224,7 +255,7 @@ export default function StudyFlowChat() {
                               ),
 
                               strong: ({ children }) => (
-                                <strong className="font-semibold text-gray-900">
+                                <strong className="font-semibold text-[var(--foreground)]">
                                   {children}
                                 </strong>
                               ),
@@ -244,7 +275,7 @@ export default function StudyFlowChat() {
                                 }
 
                                 return (
-                                  <code className="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-xs text-gray-800">
+                                  <code className="rounded border border-[var(--border)] bg-[var(--surface-muted)] px-1.5 py-0.5 font-mono text-xs text-[var(--foreground)]">
                                     {children}
                                   </code>
                                 );
@@ -270,9 +301,14 @@ export default function StudyFlowChat() {
                           return (
                             <div
                               key={index}
-                              className="mt-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-600"
+                              className="mt-3 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-3 text-sm text-[var(--muted)]"
                             >
-                              🔄 Preparing your study progress analysis...
+                              <div className="flex items-center gap-2">
+                                <span className="h-2 w-2 animate-pulse rounded-full bg-indigo-500" />
+                                <span>
+                                  Preparing your study progress analysis...
+                                </span>
+                              </div>
                             </div>
                           );
                         }
@@ -282,9 +318,14 @@ export default function StudyFlowChat() {
                           return (
                             <div
                               key={index}
-                              className="mt-3 rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-3 text-sm text-indigo-700"
+                              className="mt-3 rounded-xl border border-indigo-500/20 bg-[var(--primary-soft)] px-4 py-3 text-sm text-[var(--primary)]"
                             >
-                              ⚙️ Analyzing your study progress...
+                              <div className="flex items-center gap-2">
+                                <span className="h-2 w-2 animate-pulse rounded-full bg-indigo-500" />
+                                <span>
+                                  Analyzing your study progress...
+                                </span>
+                              </div>
                             </div>
                           );
                         }
@@ -311,9 +352,9 @@ export default function StudyFlowChat() {
                           return (
                             <div
                               key={index}
-                              className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                              className="mt-3 rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-600 dark:text-red-400"
                             >
-                              ❌ I couldn't load the study progress right
+                              ❌ I couldn&apos;t load the study progress right
                               now.
                             </div>
                           );
@@ -333,12 +374,12 @@ export default function StudyFlowChat() {
         {status === "submitted" && (
           <div className="flex justify-start">
             <div>
-              <p className="mb-1 px-1 text-xs font-semibold text-gray-500">
+              <p className="mb-1 px-1 text-xs font-semibold text-[var(--muted)]">
                 Study Flow AI
               </p>
 
-              <div className="rounded-2xl rounded-bl-md border border-gray-200 bg-white px-4 py-3 shadow-sm">
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+              <div className="rounded-2xl rounded-bl-md border border-[var(--border)] bg-[var(--surface)] px-4 py-3 shadow-sm">
+                <div className="flex items-center gap-2 text-sm text-[var(--muted)]">
                   <span className="h-2 w-2 animate-pulse rounded-full bg-indigo-400" />
                   <span>Thinking...</span>
                 </div>
@@ -350,22 +391,22 @@ export default function StudyFlowChat() {
 
       {/* Chat Error */}
       {error && (
-        <div className="border-t border-red-200 bg-red-50 px-4 py-4">
+        <div className="border-t border-red-500/20 bg-red-500/5 px-4 py-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm font-semibold text-red-800">
+              <p className="text-sm font-semibold text-red-700 dark:text-red-400">
                 Something went wrong
               </p>
 
-              <p className="mt-1 text-xs text-red-600">
-                We couldn't generate a response. Please try again.
+              <p className="mt-1 text-xs text-red-600/80 dark:text-red-400/80">
+                We couldn&apos;t generate a response. Please try again.
               </p>
             </div>
 
             <button
               type="button"
               onClick={() => regenerate()}
-              className="shrink-0 rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
+              className="shrink-0 rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
             >
               Retry
             </button>
@@ -374,15 +415,14 @@ export default function StudyFlowChat() {
       )}
 
       {/* Input */}
-      <div className="border-t border-gray-200 bg-white p-4">
+      <div className="border-t border-[var(--border)] bg-[var(--surface)] p-4">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-3 sm:flex-row"
         >
           <label htmlFor="study-question" className="sr-only">
-  Ask a study question
-</label>
-
+            Ask a study question
+          </label>
 
           <input
             id="study-question"
@@ -390,25 +430,23 @@ export default function StudyFlowChat() {
             onChange={(event) => setInput(event.target.value)}
             placeholder="Ask a study question..."
             required
-            className="min-w-0 flex-1 rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+            className="min-w-0 flex-1 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-3 text-sm text-[var(--foreground)] outline-none transition placeholder:text-[var(--muted)] focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 disabled:cursor-not-allowed disabled:opacity-60"
             disabled={isStreaming || !!error}
           />
 
           <AnimatedSendButton
-  disabled={!input.trim()}
-  isLoading={isStreaming}
-  hasError={!!error}
-  onRetry={() => regenerate()}
-  onStop={stop}
-/>
+            disabled={!input.trim()}
+            isLoading={isStreaming}
+            hasError={!!error}
+            onRetry={() => regenerate()}
+            onStop={stop}
+          />
         </form>
 
-        <p className="mt-2 text-center text-xs text-gray-400">
+        <p className="mt-2 text-center text-xs text-[var(--muted)]">
           Study Flow AI can make mistakes. Check important information.
         </p>
       </div>
     </section>
-    
-    </>
   );
 }
