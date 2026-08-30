@@ -25,21 +25,28 @@ test("user can start a study session and interact with the timer", async ({
   ).toBeVisible();
 
   await expect(
-    page.getByText("Focus on your task. You've got this!"),
+    page.getByText("Stay focused. Your next 45 minutes are yours."),
   ).toBeVisible();
 
   // Verify the initial timer
   await expect(page.getByText("45:00")).toBeVisible();
 
-  // Interact with the timer
-  await page.getByRole("button", { name: "Test Timer" }).click();
+  // Start the timer
+await page.getByRole("button", { name: "Start Session" }).click();
 
-  // Verify that the timer decreased
-  await expect(page.getByText("44:00")).toBeVisible();
+// Verify that the timer is running
+await expect(
+  page.getByRole("button", { name: "Pause Session" }),
+).toBeVisible();
 
-  // Verify the AI study assistant
-  await expect(
-    page.getByRole("heading", { name: "Study Flow AI" }),
-  ).toBeVisible();
+// Wait for the timer to decrease
+await expect(page.getByText("44:59")).toBeVisible({ timeout: 2000 });
+
+ // Verify the AI study assistant
+await page.getByRole("link", { name: "AI Help" }).click();
+
+await expect(
+  page.getByRole("heading", { name: "Study Flow AI" }),
+).toBeVisible();
 });
 
