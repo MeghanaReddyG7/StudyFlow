@@ -228,7 +228,11 @@ function ShaderPlane({
   );
 }
 
-export default function ShaderHero() {
+export default function ShaderHero({
+  showContent = true,
+}: {
+  showContent?: boolean;
+}) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [pageVisible, setPageVisible] = useState(true);
 
@@ -301,43 +305,42 @@ export default function ShaderHero() {
     !reducedMotion && pageVisible;
 
   return (
-    <section className="relative min-h-[600px] overflow-hidden bg-slate-950">
-
-      {/* Static fallback for reduced-motion users */}
-      {reducedMotion ? (
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(circle at 30% 40%, #176b72 0%, #172554 35%, #09051a 75%)",
+  <section className="relative min-h-[600px] overflow-hidden bg-slate-950">
+    {/* Static fallback for reduced-motion users */}
+    {reducedMotion ? (
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at 30% 40%, #176b72 0%, #172554 35%, #09051a 75%)",
+        }}
+      />
+    ) : (
+      <div className="absolute inset-0">
+        <Canvas
+          frameloop={shouldAnimate ? "always" : "demand"}
+          dpr={[1, 1.5]}
+          camera={{ position: [0, 0, 1] }}
+          gl={{
+            antialias: false,
+            powerPreference: "high-performance",
           }}
-        />
-      ) : (
-        <div className="absolute inset-0">
-          <Canvas
-            frameloop={shouldAnimate ? "always" : "demand"}
-            dpr={[1, 1.5]}
-            camera={{ position: [0, 0, 1] }}
-            gl={{
-              antialias: false,
-              powerPreference: "high-performance",
-            }}
-          >
-            <ShaderPlane
-              animate={shouldAnimate}
-              mouse={mouse}
-            />
-          </Canvas>
-        </div>
-      )}
+        >
+          <ShaderPlane
+            animate={shouldAnimate}
+            mouse={mouse}
+          />
+        </Canvas>
+      </div>
+    )}
 
-      {/* Dark overlay keeps the text readable */}
-      <div className="absolute inset-0 bg-slate-950/45" />
+    {/* Dark overlay */}
+    <div className="absolute inset-0 bg-slate-950/45" />
 
-      {/* Hero content */}
+    {/* Existing Shader page content */}
+    {showContent && (
       <div className="relative z-10 flex min-h-[600px] items-center justify-center px-6 text-center">
         <div className="max-w-3xl">
-
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-cyan-200/80">
             StudyFlow
           </p>
@@ -364,9 +367,9 @@ export default function ShaderHero() {
               Explore StudyFlow
             </a>
           </div>
-
         </div>
       </div>
-    </section>
-  );
+    )}
+  </section>
+);
 }
