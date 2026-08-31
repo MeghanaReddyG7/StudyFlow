@@ -94,6 +94,61 @@ const stats = [
     "bg-cyan-50 text-cyan-600 dark:bg-cyan-950/50 dark:text-cyan-400",
 },
 ];
+function TimelineIcon({
+  type,
+}: {
+  type: "completed" | "break" | "next" | "practice";
+}) {
+  const commonProps = {
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.8,
+    className: "h-4.5 w-4.5",
+    "aria-hidden": true,
+  };
+
+  if (type === "completed") {
+    return (
+      <svg {...commonProps}>
+        <path
+          d="m6.5 12.5 3.5 3.5 7.5-8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+
+  if (type === "break") {
+    return (
+      <svg {...commonProps}>
+        <path d="M8 5v14M16 5v14" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (type === "next") {
+    return (
+      <svg {...commonProps}>
+        <path
+          d="M5 12h13M13 7l5 5-5 5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+
+  return (
+    <svg {...commonProps}>
+      <path
+        d="M6 7h12M6 12h12M6 17h8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 export default function Dashboard() {
   return (
@@ -220,9 +275,9 @@ export default function Dashboard() {
                 9:00 AM
               </div>
 
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-sm font-bold text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400">
-                ✓
-              </div>
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400">
+  <TimelineIcon type="completed" />
+</div>
 
               <div className="min-w-0 flex-1">
                 <p className="font-semibold text-slate-900 dark:text-slate-100">
@@ -243,9 +298,9 @@ export default function Dashboard() {
                 10:00 AM
               </div>
 
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm text-slate-500 dark:bg-slate-800 dark:text-slate-400">
-                ☕
-              </div>
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+  <TimelineIcon type="break" />
+</div>
 
               <div className="min-w-0 flex-1">
                 <p className="font-semibold text-slate-900 dark:text-slate-100">
@@ -262,9 +317,9 @@ export default function Dashboard() {
                 10:15 AM
               </div>
 
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-sm font-bold text-indigo-600 dark:bg-indigo-900/60 dark:text-indigo-300">
-                →
-              </div>
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900/60 dark:text-indigo-300">
+  <TimelineIcon type="next" />
+</div>
 
               <div className="min-w-0 flex-1">
                 <p className="font-semibold text-slate-900 dark:text-slate-100">
@@ -286,9 +341,9 @@ export default function Dashboard() {
                 11:15 AM
               </div>
 
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm text-slate-500 dark:bg-slate-800 dark:text-slate-400">
-                3
-              </div>
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+  <TimelineIcon type="practice" />
+</div>
 
               <div className="min-w-0 flex-1">
                 <p className="font-semibold text-slate-900 dark:text-slate-100">
