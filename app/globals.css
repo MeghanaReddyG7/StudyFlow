@@ -136,3 +136,13 @@ textarea {
     transform: translateY(0);
   }
 }
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active,
+a:active {
+  transform: scale(0.98);
+}
