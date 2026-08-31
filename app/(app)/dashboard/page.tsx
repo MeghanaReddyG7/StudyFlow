@@ -1,32 +1,98 @@
 "use client";
 
 import Link from "next/link";
+type StatIconProps = {
+  type: "clock" | "book" | "target";
+};
+
+function StatIcon({ type }: StatIconProps) {
+  if (type === "clock") {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (type === "book") {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <path
+          d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M4 5.5v16" strokeLinecap="round" />
+        <path d="M8 7h8M8 11h6" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      className="h-5 w-5"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="8.5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
 
 const stats = [
   {
-    label: "Today's Progress",
-    value: "60%",
-    detail: "3 / 5 sessions",
-    progress: "60%",
-    accent: "bg-indigo-600",
-    detailColor: "text-indigo-600 dark:text-indigo-400",
-  },
+  label: "Today's Progress",
+  value: "60%",
+  detail: "3 / 5 sessions",
+  progress: "60%",
+  accent: "bg-indigo-600",
+  detailColor: "text-indigo-600 dark:text-indigo-400",
+  icon: "clock" as const,
+  iconStyle:
+    "bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400",
+},
   {
-    label: "Learning Progress",
-    value: "72%",
-    detail: "On track",
-    progress: "72%",
-    accent: "bg-emerald-500",
-    detailColor: "text-emerald-600 dark:text-emerald-400",
-  },
+  label: "Learning Progress",
+  value: "72%",
+  detail: "On track",
+  progress: "72%",
+  accent: "bg-emerald-500",
+  detailColor: "text-emerald-600 dark:text-emerald-400",
+  icon: "book" as const,
+  iconStyle:
+    "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400",
+},
   {
-    label: "Study Goal",
-    value: "3.5h",
-    detail: "of 4h",
-    progress: "87%",
-    accent: "bg-cyan-500",
-    detailColor: "text-cyan-600 dark:text-cyan-400",
-  },
+  label: "Study Goal",
+  value: "3.5h",
+  detail: "of 4h",
+  progress: "87%",
+  accent: "bg-cyan-500",
+  detailColor: "text-cyan-600 dark:text-cyan-400",
+  icon: "target" as const,
+  iconStyle:
+    "bg-cyan-50 text-cyan-600 dark:bg-cyan-950/50 dark:text-cyan-400",
+},
 ];
 
 export default function Dashboard() {
@@ -65,7 +131,11 @@ export default function Dashboard() {
                 <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
                   {stat.label}
                 </p>
-                <span className="h-2.5 w-2.5 rounded-full bg-slate-200 transition-colors group-hover:bg-indigo-400 dark:bg-slate-700" />
+                <div
+  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${stat.iconStyle}`}
+>
+  <StatIcon type={stat.icon} />
+</div>
               </div>
 
               <div className="mt-5 flex items-end justify-between gap-3">
