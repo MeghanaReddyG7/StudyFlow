@@ -2,10 +2,10 @@ import StudyFlowChat from "@/components/StudyFlowChat";
 
 export default function AIHelpPage() {
   return (
-    <main className="min-h-screen bg-[var(--background)] px-4 py-8 text-[var(--foreground)] sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-slate-100/70 px-4 py-8 text-[var(--foreground)] dark:bg-slate-950 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
         {/* Page Header */}
-        <section className="relative overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--surface)] px-6 py-7 shadow-[var(--shadow-soft)] sm:px-8 sm:py-9">
+        <section className="relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white px-6 py-7 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:px-8 sm:py-9">
           <div className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-indigo-500/5 blur-3xl" />
 
           <div className="relative">
@@ -30,18 +30,19 @@ export default function AIHelpPage() {
                 Concept explanations
               </span>
 
-              <span className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1.5 text-xs font-semibold text-[var(--muted)]">
-                Practice questions
-              </span>
+              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
+  Practice questions
+</span>
 
-              <span className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1.5 text-xs font-semibold text-[var(--muted)]">
-                Study progress
-              </span>
+              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
+  Study progress
+</span>
             </div>
           </div>
         </section>
-
+        <div className="mt-6">
         <StudyFlowChat />
+        </div>
       </div>
     </main>
   );
