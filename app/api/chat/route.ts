@@ -11,6 +11,30 @@ import {
 
 import { getStudyProgressTool } from "@/lib/tools/get-study-progress";
 
+const RATE_LIMIT = 10;
+const RATE_WINDOW_MS = 60 * 1000;
+
+const requestLog = new Map<string, number[]>();
+
+function isRateLimited(ip: string) {
+  const now = Date.now();
+  const timestamps = requestLog.get(ip) ?? [];
+
+  const recentRequests = timestamps.filter(
+    (timestamp) => now - timestamp < RATE_WINDOW_MS,
+  );
+
+  if (recentRequests.length >= RATE_LIMIT) {
+    requestLog.set(ip, recentRequests);
+    return true;
+  }
+
+  recentRequests.push(now);
+  requestLog.set(ip, recentRequests);
+
+  return false;
+}
+
 // Prevent long-running AI requests in production.
 export const maxDuration = 30;
 
@@ -20,6 +44,25 @@ const MAX_MESSAGE_LENGTH = 4000;
 
 export async function POST(req: Request) {
   try {
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("x-real-ip") ||
+      "unknown";
+
+    if (isRateLimited(ip)) {
+      return new Response(
+        JSON.stringify({
+          error: "Too many requests. Please wait a minute and try again.",
+        }),
+        {
+          status: 429,
+          headers: {
+            "Content-Type": "application/json",
+            "Retry-After": "60",
+          },
+        },
+      );
+    }
     const { messages }: { messages: UIMessage[] } = await req.json();
 
     // Validate the request body.
