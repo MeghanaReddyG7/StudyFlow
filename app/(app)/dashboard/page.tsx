@@ -215,7 +215,7 @@ export default function Dashboard() {
           ))}
         </section>
 
-        <section className="relative mt-6 overflow-hidden rounded-[28px] bg-indigo-600 p-6 text-white shadow-[0_20px_45px_rgba(79,70,229,0.18)] dark:bg-indigo-700 dark:shadow-[0_20px_45px_rgba(0,0,0,0.25)] sm:p-8">
+        <section className="animate-[fadeInUp_0.5s_ease-out_both] relative mt-6 overflow-hidden rounded-[28px] bg-indigo-600 p-6 text-white shadow-[0_20px_45px_rgba(79,70,229,0.18)] dark:bg-indigo-700 dark:shadow-[0_20px_45px_rgba(0,0,0,0.25)] sm:p-8">
           <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 left-1/3 h-48 w-48 rounded-full bg-cyan-300/10 blur-3xl" />
 
@@ -249,7 +249,7 @@ export default function Dashboard() {
           </div>
         </section>
 
-        <section className="mt-6 rounded-[28px] border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:shadow-sm sm:p-8">
+        <section className="animate-[fadeInUp_0.5s_ease-out_0.1s_both] mt-6 rounded-[28px] border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:shadow-sm sm:p-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-indigo-600 dark:text-indigo-400">
