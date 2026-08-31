@@ -102,11 +102,11 @@ export default function Study() {
               data-testid="study-timer"
               aria-label={`Time remaining ${formattedTime}`}
               aria-live="polite"
-              className={`mt-3 font-mono text-6xl font-bold tracking-[-0.05em] sm:text-7xl md:text-8xl ${
-                isComplete
-                  ? "text-emerald-600 dark:text-emerald-400"
-                  : "text-slate-900 dark:text-slate-100"
-              }`}
+              className={`mt-3 font-mono text-6xl font-bold tracking-[-0.05em] transition-colors duration-500 sm:text-7xl md:text-8xl ${
+  isComplete
+    ? "text-emerald-600 dark:text-emerald-400"
+    : "text-slate-900 dark:text-slate-100"
+}`}
             >
               {formattedTime}
             </div>
@@ -120,13 +120,13 @@ export default function Study() {
               aria-label="Study session progress"
             >
               <div
-                className={`h-full rounded-full transition-all duration-500 ${
-                  isComplete
-                    ? "bg-emerald-500"
-                    : "bg-indigo-600 dark:bg-indigo-500"
-                }`}
-                style={{ width: `${Math.min(progress, 100)}%` }}
-              />
+  className={`h-full rounded-full transition-[width,background-color] duration-700 ease-out ${
+    isComplete
+      ? "bg-emerald-500"
+      : "bg-indigo-600 dark:bg-indigo-500"
+  }`}
+  style={{ width: `${Math.min(progress, 100)}%` }}
+/>
             </div>
 
             <div className="mt-3 flex justify-between gap-3 text-[11px] font-medium text-slate-400 dark:text-slate-500 sm:text-xs">
