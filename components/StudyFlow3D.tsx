@@ -28,16 +28,29 @@ const modes = {
 function FocusOrb({
   mode,
   isRunning,
+  isComplete,
 }: {
   mode: Mode;
   isRunning: boolean;
+  isComplete:boolean;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
-    if (!meshRef.current || !isRunning) return;
+    if (!meshRef.current) return;
 
-    const elapsed = state.clock.elapsedTime;
+const elapsed = state.clock.elapsedTime;
+
+if (isComplete) {
+  const celebration = 1 + Math.sin(elapsed * 5) * 0.1;
+  meshRef.current.scale.setScalar(celebration);
+  meshRef.current.rotation.y = elapsed * 1.2;
+  return;
+}
+
+if (!isRunning) return;
+
+    
 
     meshRef.current.rotation.x = elapsed * 0.25;
     meshRef.current.rotation.y = elapsed * 0.35;
@@ -102,6 +115,7 @@ useEffect(() => {
         <FocusOrb
   mode={mode}
   isRunning={isRunning && !reducedMotion}
+  isComplete={false}
 />
 
         <OrbitControls
