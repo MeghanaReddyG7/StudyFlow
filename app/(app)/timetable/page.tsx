@@ -68,7 +68,7 @@ export default function Timetable() {
 };
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-8 text-slate-900 dark:bg-slate-950 dark:text-slate-100 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-slate-100/70 px-4 py-8 text-slate-900 dark:bg-slate-950 dark:text-slate-100 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
         <div>
           <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-indigo-600 dark:text-indigo-400">
@@ -84,7 +84,7 @@ export default function Timetable() {
           </p>
         </div>
 
-        <section className="mt-8 rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04)] dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_20px_45px_rgba(0,0,0,0.18)] sm:p-8">
+        <section className="mt-8 rounded-[28px] border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:shadow-lg sm:p-8">
           <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">
             Add Study Session
           </h2>
@@ -174,7 +174,7 @@ export default function Timetable() {
           </form>
         </section>
 
-        <section className="mt-6 rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04)] dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_20px_45px_rgba(0,0,0,0.18)] sm:p-8">
+        <section className="mt-6 rounded-[28px] border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:shadow-lg sm:p-8">
           <div className="flex items-center justify-between gap-4">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-indigo-600 dark:text-indigo-400">
