@@ -454,7 +454,36 @@ Before submission, the production flow should be checked for:
 * AI study-progress tool
 * Responsive mobile layout
 * 3D focus experience
-* Health check page
+
+
+---
+
+## Deployment & Operations
+
+### Deployment Checklist
+
+- [✅] Production build completed successfully with `npm run build`
+- [✅] All automated tests passing (`13/13`)
+- [✅] Application deployed successfully on Vercel
+- [✅] Production URL verified manually
+- [✅] Environment variables configured in the deployment environment
+- [✅] AI functionality verified in production
+- [✅] Responsive layout checked on desktop and mobile
+- [✅] Accessibility audit completed with Lighthouse — 100/100
+- [✅] Lighthouse performance audit completed
+
+
+### Error Handling and Safe Failure
+
+StudyFlow is designed to fail safely when services or requests are unavailable. AI requests are handled through the server-side API route, and the interface provides an error state when an AI request cannot be completed. Users can continue using the core study-planning, timer, timetable, and progress features even if the AI assistant is temporarily unavailable.
+
+### Monitoring
+
+StudyFlow includes a health check endpoint at `/health` that can be used to verify that the deployed application is responding correctly. Vercel deployment logs can also be used to investigate production errors and failed requests.
+
+### Rollback Plan
+
+StudyFlow is deployed through Vercel and maintained in GitHub. If a production deployment introduces a critical regression, the previous stable Vercel deployment can be restored, or the last known-good commit can be redeployed from the `main` branch.
 
 ---
 
@@ -470,6 +499,16 @@ Potential future improvements include:
 * Integration between AI recommendations and the study timetable
 * Richer 3D focus environments
 * Additional accessibility testing across browsers and devices
+
+---
+
+## Reflection
+
+The hardest part of building StudyFlow was bringing together the different parts of a production application rather than treating each feature as an isolated component. Integrating the AI study assistant with the existing study workflow required careful handling of server-side AI requests, structured tool usage, loading states, errors, and user feedback. Testing the application also required thinking about real user interactions rather than only checking whether individual pieces of code compiled.
+
+If I were building the project again, I would plan the performance architecture earlier. Some of the visual effects and interactive elements introduced additional client-side work, which made performance optimization more challenging later in the project. Starting with performance budgets and measuring important pages earlier would make the optimization process more predictable.
+
+One thing that surprised me was how much production readiness depends on details beyond the main features. Accessibility, loading states, error handling, automated tests, deployment verification, and documentation all significantly affect whether an application feels reliable. Building StudyFlow showed me that shipping a feature is only part of the work; making sure another developer can understand, run, test, and operate the application is equally important.
 
 ---
 
