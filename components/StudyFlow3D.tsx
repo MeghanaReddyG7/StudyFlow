@@ -42,7 +42,10 @@ function FocusOrb({
     meshRef.current.rotation.x = elapsed * 0.25;
     meshRef.current.rotation.y = elapsed * 0.35;
 
-    const pulse = 1 + Math.sin(elapsed * 2) * 0.045;
+    const pulseSpeed = mode === "deep" ? 2.6 : mode === "break" ? 1.4 : 2;
+    const pulseAmount = mode === "deep" ? 0.065 : mode === "break" ? 0.03 : 0.045;
+
+    const pulse = 1 + Math.sin(elapsed * pulseSpeed) * pulseAmount;
     meshRef.current.scale.setScalar(pulse);
   });
 
