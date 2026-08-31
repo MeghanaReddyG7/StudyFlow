@@ -270,7 +270,7 @@ export default function Dashboard() {
           </div>
 
           <div className="mt-6 space-y-2">
-            <div className="group flex items-center gap-4 rounded-2xl px-3 py-4 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
+            <div className="animate-[fadeInUp_0.4s_ease-out_0.15s_both] group flex items-center gap-4 rounded-2xl px-3 py-4 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
               <div className="w-20 shrink-0 text-sm font-medium text-slate-400 dark:text-slate-500">
                 9:00 AM
               </div>
@@ -293,7 +293,7 @@ export default function Dashboard() {
               </span>
             </div>
 
-            <div className="group flex items-center gap-4 rounded-2xl px-3 py-4 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
+            <div className="animate-[fadeInUp_0.4s_ease-out_0.15s_both] group flex items-center gap-4 rounded-2xl px-3 py-4 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
               <div className="w-20 shrink-0 text-sm font-medium text-slate-400 dark:text-slate-500">
                 10:00 AM
               </div>
@@ -312,7 +312,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className="group flex items-center gap-4 rounded-2xl border border-indigo-100 bg-indigo-50/60 px-3 py-4 transition-all hover:bg-indigo-50 dark:border-indigo-900 dark:bg-indigo-950/40 dark:hover:bg-indigo-950/60">
+            <div className="animate-[fadeInUp_0.4s_ease-out_0.15s_both] group flex items-center gap-4 rounded-2xl border border-indigo-100 bg-indigo-50/60 px-3 py-4 transition-all hover:bg-indigo-50 dark:border-indigo-900 dark:bg-indigo-950/40 dark:hover:bg-indigo-950/60">
               <div className="w-20 shrink-0 text-sm font-semibold text-indigo-600 dark:text-indigo-400">
                 10:15 AM
               </div>
@@ -336,7 +336,7 @@ export default function Dashboard() {
               </span>
             </div>
 
-            <div className="group flex items-center gap-4 rounded-2xl px-3 py-4 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
+            <div className="animate-[fadeInUp_0.4s_ease-out_0.15s_both] group flex items-center gap-4 rounded-2xl px-3 py-4 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
               <div className="w-20 shrink-0 text-sm font-medium text-slate-400 dark:text-slate-500">
                 11:15 AM
               </div>
