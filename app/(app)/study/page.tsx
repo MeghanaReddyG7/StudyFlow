@@ -10,7 +10,7 @@ const StudyFlow3D = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex h-[450px] w-full items-center justify-center rounded-[24px] bg-slate-950">
+      <div className="flex h-[520px] w-full items-center justify-center rounded-[24px] bg-slate-950 sm:h-[560px]">
         <div className="text-center text-white">
           <div className="mx-auto mb-4 flex h-16 w-16 animate-pulse items-center justify-center rounded-full border border-indigo-400/40 bg-indigo-500/20">
             <span className="text-lg font-bold">SF</span>
@@ -51,7 +51,7 @@ export default function Study() {
   const isComplete = timeLeft === 0;
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <main className="min-h-screen bg-slate-100/70 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <section>
           <div className="flex items-center gap-2">
@@ -189,9 +189,11 @@ export default function Study() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[28px] shadow-[0_20px_45px_rgba(15,23,42,0.12)] dark:shadow-[0_20px_45px_rgba(0,0,0,0.28)]">
-            <StudyFlow3D />
-          </div>
+          <div className="overflow-hidden rounded-[28px] border border-slate-200/80 bg-slate-950 p-2 shadow-[0_20px_45px_rgba(15,23,42,0.12)] dark:border-slate-800 dark:bg-slate-950 dark:shadow-[0_20px_45px_rgba(0,0,0,0.28)] sm:p-3">
+  <div className="overflow-hidden rounded-[22px]">
+    <StudyFlow3D />
+  </div>
+</div>
         </section>
       </div>
     </main>
