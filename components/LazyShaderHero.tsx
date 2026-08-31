@@ -6,18 +6,25 @@ const ShaderHero = dynamic(
   () => import("@/components/ShaderHero"),
   {
     ssr: false,
-    loading: () => (
+    loading: () => null,
+  }
+);
+
+export default function LazyShaderHero() {
+  return (
+    <>
       <div
-        className="absolute inset-0 bg-slate-950"
+        className="absolute inset-0"
+        aria-hidden="true"
         style={{
           background:
             "radial-gradient(circle at 30% 40%, #176b72 0%, #172554 35%, #09051a 75%)",
         }}
       />
-    ),
-  }
-);
 
-export default function LazyShaderHero() {
-  return <ShaderHero showContent={false} />;
+      <div className="absolute inset-0">
+        <ShaderHero showContent={false} />
+      </div>
+    </>
+  );
 }
