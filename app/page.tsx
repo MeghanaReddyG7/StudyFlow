@@ -113,6 +113,166 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <section className="mx-auto mt-16 w-full max-w-6xl px-4 pb-20 sm:px-6">
+  <div className="grid gap-6 md:grid-cols-3">
+    <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          className="h-5 w-5"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+
+      <h2 className="text-lg font-semibold text-white">
+        Focus sessions
+      </h2>
+
+      <p className="mt-2 text-sm leading-6 text-slate-300">
+        Stay focused with structured study sessions and a simple timer built
+        around your goals.
+      </p>
+    </div>
+
+    <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          className="h-5 w-5"
+          aria-hidden="true"
+        >
+          <path
+            d="M5 19V9M12 19V5M19 19v-7"
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
+
+      <h2 className="text-lg font-semibold text-white">
+        Track your progress
+      </h2>
+
+      <p className="mt-2 text-sm leading-6 text-slate-300">
+        See your study habits, completed sessions, goals, and progress at a
+        glance.
+      </p>
+    </div>
+
+    <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          className="h-5 w-5"
+          aria-hidden="true"
+        >
+          <path
+            d="M12 3 4 7v5c0 4.5 3.1 7.6 8 9 4.9-1.4 8-4.5 8-9V7l-8-4Z"
+            strokeLinejoin="round"
+          />
+          <path
+            d="m9 12 2 2 4-4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+
+      <h2 className="text-lg font-semibold text-white">
+        AI study support
+      </h2>
+
+      <p className="mt-2 text-sm leading-6 text-slate-300">
+        Get help while you study with an AI assistant designed to keep your
+        learning moving forward.
+      </p>
+    </div>
+  </div>
+</section>
+<section className="mx-auto w-full max-w-6xl px-4 pb-24 sm:px-6">
+  <div className="overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.04] shadow-2xl backdrop-blur-sm">
+    <div className="grid items-center gap-10 p-6 sm:p-10 lg:grid-cols-2 lg:p-14">
+      <div>
+        <p className="text-xs font-bold uppercase tracking-[0.24em] text-indigo-300">
+          Your focus space
+        </p>
+
+        <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          Turn study time into focused time.
+        </h2>
+
+        <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+          Plan your sessions, stay focused with the timer, and understand your
+          progress without filling your workspace with distractions.
+        </p>
+
+        <div className="mt-7 flex flex-wrap gap-3">
+          <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-slate-200">
+            Focus timer
+          </span>
+          <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-slate-200">
+            Progress tracking
+          </span>
+          <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-slate-200">
+            AI assistance
+          </span>
+        </div>
+      </div>
+
+      <div className="relative mx-auto w-full max-w-md">
+        <div className="absolute -inset-8 rounded-full bg-indigo-500/10 blur-3xl" />
+
+        <div className="relative rounded-[28px] border border-white/10 bg-slate-950/80 p-5 shadow-xl">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs font-medium text-slate-400">
+                Current session
+              </p>
+              <p className="mt-1 text-lg font-semibold text-white">
+                DSA Practice
+              </p>
+            </div>
+
+            <span className="rounded-full bg-indigo-500/15 px-3 py-1 text-xs font-semibold text-indigo-300">
+              Focus
+            </span>
+          </div>
+
+          <div className="mt-7 flex justify-center">
+            <div className="flex h-48 w-48 items-center justify-center rounded-full border border-indigo-400/20 bg-indigo-500/[0.06] shadow-[inset_0_0_50px_rgba(99,102,241,0.08)]">
+              <div className="flex h-36 w-36 items-center justify-center rounded-full border border-indigo-400/20 bg-slate-950">
+                <div className="text-center">
+                  <p className="text-3xl font-bold tracking-tight text-white">
+                    45:00
+                  </p>
+                  <p className="mt-1 text-xs text-slate-500">
+                    Focus session
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-7 flex gap-3">
+            <div className="h-10 flex-1 rounded-xl bg-indigo-600" />
+            <div className="h-10 w-20 rounded-xl border border-white/10 bg-white/5" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Bottom fade */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
