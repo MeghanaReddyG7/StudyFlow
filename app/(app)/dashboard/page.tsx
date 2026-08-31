@@ -179,9 +179,12 @@ export default function Dashboard() {
         <section className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {stats.map((stat) => (
             <div
-              key={stat.label}
-              className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:shadow-sm dark:hover:shadow-lg"
-            >
+  key={stat.label}
+  className="animate-[fadeInUp_0.4s_ease-out_both] group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:shadow-sm dark:hover:shadow-lg"
+  style={{
+    animationDelay: `${stats.indexOf(stat) * 100}ms`,
+  }}
+>
               <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
                   {stat.label}
