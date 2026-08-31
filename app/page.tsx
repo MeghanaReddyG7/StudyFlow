@@ -113,7 +113,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="mx-auto mt-16 w-full max-w-6xl px-4 pb-20 sm:px-6">
+      <section
+  className="mx-auto mt-16 w-full max-w-6xl px-4 pb-20 sm:px-6"
+  style={{ contentVisibility: "auto", containIntrinsicSize: "400px" }}
+>
   <div className="grid gap-6 md:grid-cols-3">
     <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
       <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300">
@@ -200,7 +203,10 @@ export default function HomePage() {
     </div>
   </div>
 </section>
-<section className="mx-auto w-full max-w-6xl px-4 pb-24 sm:px-6">
+<section
+  className="mx-auto w-full max-w-6xl px-4 pb-24 sm:px-6"
+  style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}
+>
   <div className="overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.04] shadow-2xl backdrop-blur-sm">
     <div className="grid items-center gap-10 p-6 sm:p-10 lg:grid-cols-2 lg:p-14">
       <div>
