@@ -24,7 +24,7 @@ export default function HomePage() {
 
         <nav
           aria-label="Main navigation"
-          className="flex items-center gap-1 rounded-full border border-white/[0.10] bg-white/[0.045] p-1.5 shadow-2xl shadow-black/20 backdrop-blur-2xl animate-[fadeDown_0.8s_ease-out_0.1s_both]"
+          className="flex items-center gap-1 rounded-full border border-white/[0.10] bg-white/[0.045] p-1.5 shadow-2xl shadow-black/20 backdrop-blur-md animate-[fadeDown_0.8s_ease-out_0.1s_both]"
         >
           <Link
             href="/login"
@@ -57,7 +57,7 @@ export default function HomePage() {
         <div className="max-w-4xl">
 
           {/* Eyebrow */}
-          <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/[0.10] bg-white/[0.045] px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white/55 shadow-lg shadow-black/10 backdrop-blur-xl animate-[fadeUp_0.9s_ease-out_0.15s_both]">
+          <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/[0.10] bg-white/[0.045] px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white/55 shadow-lg shadow-black/10 backdrop-blur-md animate-[fadeUp_0.9s_ease-out_0.15s_both]">
             <span className="h-1.5 w-1.5 rounded-full bg-white/60" />
             Your study, your flow
           </div>
