@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 const ShaderHero = dynamic(
@@ -11,6 +12,30 @@ const ShaderHero = dynamic(
 );
 
 export default function LazyShaderHero() {
+  const [showShader, setShowShader] = useState(false);
+
+  useEffect(() => {
+    const loadShader = () => {
+      setShowShader(true);
+    };
+
+    if ("requestIdleCallback" in window) {
+      const idleId = window.requestIdleCallback(loadShader, {
+        timeout: 3000,
+      });
+
+      return () => {
+        window.cancelIdleCallback(idleId);
+      };
+    }
+
+    const timeoutId = setTimeout(loadShader, 2000);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, []);
+
   return (
     <>
       <div
@@ -22,9 +47,11 @@ export default function LazyShaderHero() {
         }}
       />
 
-      <div className="absolute inset-0">
-        <ShaderHero showContent={false} />
-      </div>
+      {showShader && (
+        <div className="absolute inset-0" aria-hidden="true">
+          <ShaderHero showContent={false} />
+        </div>
+      )}
     </>
   );
 }
