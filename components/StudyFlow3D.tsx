@@ -37,8 +37,13 @@ function FocusOrb({
   useFrame((state) => {
     if (!meshRef.current || !isRunning) return;
 
-    meshRef.current.rotation.x = state.clock.elapsedTime * 0.25;
-    meshRef.current.rotation.y = state.clock.elapsedTime * 0.35;
+    const elapsed = state.clock.elapsedTime;
+
+    meshRef.current.rotation.x = elapsed * 0.25;
+    meshRef.current.rotation.y = elapsed * 0.35;
+
+    const pulse = 1 + Math.sin(elapsed * 2) * 0.045;
+    meshRef.current.scale.setScalar(pulse);
   });
 
   const material = modes[mode];
