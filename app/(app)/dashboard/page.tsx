@@ -156,7 +156,7 @@ export default function Dashboard() {
   return (
     <main className="min-h-screen bg-slate-100/70 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <section className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-white px-6 py-8 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_10px_30px_rgba(15,23,42,0.04)] dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_1px_2px_rgba(0,0,0,0.2),0_10px_30px_rgba(0,0,0,0.18)] sm:px-8 sm:py-10">
+        <section className="animate-[fadeInUp_0.5s_ease-out_both] relative overflow-hidden rounded-[28px] border border-slate-200 bg-white px-6 py-8 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_10px_30px_rgba(15,23,42,0.04)] dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_1px_2px_rgba(0,0,0,0.2),0_10px_30px_rgba(0,0,0,0.18)] sm:px-8 sm:py-10">
           <div className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-indigo-100/80 blur-3xl dark:bg-indigo-900/30" />
           <div className="pointer-events-none absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_top_left,_rgba(79,70,229,0.06),_transparent_42%)] dark:bg-[radial-gradient(circle_at_top_left,_rgba(129,140,248,0.08),_transparent_42%)]" />
 
