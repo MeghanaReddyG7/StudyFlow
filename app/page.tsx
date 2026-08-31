@@ -1,5 +1,5 @@
 
-
+import StudyFlowLogo from "@/components/StudyFlowLogo";
 import Link from "next/link";
 import LazyShaderHero from "@/components/LazyShaderHero";
 
@@ -17,14 +17,10 @@ export default function HomePage() {
 
       {/* Header */}
       <header className="relative z-20 flex items-center justify-between px-6 py-6 sm:px-10 lg:px-14">
-        <Link
-          href="/"
-          className="group text-xl font-bold tracking-tight sm:text-2xl animate-[fadeDown_0.8s_ease-out_both]"
-        >
-          <span className="inline-block transition-all duration-300 group-hover:-translate-y-0.5 group-hover:tracking-wide">
-            StudyFlow
-          </span>
-        </Link>
+        <StudyFlowLogo
+           href="/"
+            className="group text-xl text-white sm:text-2xl animate-[fadeDown_0.8s_ease-out_both]"
+        />
 
         <nav
           aria-label="Main navigation"

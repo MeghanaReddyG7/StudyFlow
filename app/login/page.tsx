@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import StudyFlowLogo from "@/components/StudyFlowLogo";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -15,12 +16,7 @@ export default function LoginPage() {
       <div className="mx-auto flex min-h-[80vh] w-full max-w-md items-center">
         <div className="w-full rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
           <div className="text-center">
-            <Link
-              href="/"
-              className="text-2xl font-bold text-slate-900"
-            >
-              StudyFlow
-            </Link>
+            <StudyFlowLogo href="/" className="text-2xl" />
 
             <h1 className="mt-8 text-3xl font-bold tracking-tight text-slate-900">
               Welcome back

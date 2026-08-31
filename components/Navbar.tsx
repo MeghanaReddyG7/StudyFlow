@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import StudyFlowLogo from "@/components/StudyFlowLogo";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -45,12 +46,10 @@ export default function Navbar() {
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
       >
         <div className="flex min-h-16 items-center justify-between gap-6">
-          <Link
+          <StudyFlowLogo
             href="/dashboard"
-            className="shrink-0 text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100"
-          >
-            Study<span className="text-indigo-600 dark:text-indigo-400">Flow</span>
-          </Link>
+            className="shrink-0 text-xl sm:text-2xl"
+          />
 
           <div className="hidden items-center gap-1 md:flex">
             {navItems.map((item) => {
