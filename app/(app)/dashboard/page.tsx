@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
 type StatIconProps = {
   type: "clock" | "book" | "target";
 };
@@ -206,14 +208,13 @@ export default function Dashboard() {
               </div>
 
               <div
-                className="mt-5 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800"
-                aria-label={`${stat.label}: ${stat.progress}`}
-              >
-                <div
-                  className={`h-full rounded-full ${stat.accent} transition-all duration-700`}
-                  style={{ width: stat.progress }}
-                />
-              </div>
+  className={`h-full rounded-full ${stat.accent} animate-[growProgress_0.9s_ease-out_both]`}
+  style={
+    {
+      "--progress-width": stat.progress,
+    } as React.CSSProperties
+  }
+/>
             </div>
           ))}
         </section>
