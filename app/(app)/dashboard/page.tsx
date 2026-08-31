@@ -208,13 +208,14 @@ export default function Dashboard() {
               </div>
 
               <div
-  className={`h-full rounded-full ${stat.accent} animate-[growProgress_0.9s_ease-out_both]`}
-  style={
-    {
-      "--progress-width": stat.progress,
-    } as React.CSSProperties
-  }
-/>
+  className="mt-5 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800"
+  aria-label={`${stat.label}: ${stat.progress}`}
+>
+  <div
+    className={`h-full rounded-full ${stat.accent}`}
+    style={{ width: stat.progress }}
+  />
+</div>
             </div>
           ))}
         </section>
