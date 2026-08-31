@@ -137,15 +137,7 @@ textarea {
   }
 }
 
-@keyframes growProgress {
-  from {
-    width: 0;
-  }
 
-  to {
-    width: var(--progress-width);
-  }
-}
 
 button,
 a {
