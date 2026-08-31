@@ -12,9 +12,9 @@ export default function SignupPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-12">
+    <main className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-indigo-50 px-6 py-12">
       <div className="mx-auto flex min-h-[80vh] w-full max-w-md items-center">
-        <div className="w-full rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="w-full rounded-3xl border border-slate-200/80 bg-white p-8 shadow-[0_20px_50px_rgba(15,23,42,0.08)]">
           <div className="text-center">
             <StudyFlowLogo href="/" className="text-2xl" />
 
@@ -46,7 +46,7 @@ export default function SignupPage() {
                 id="name"
                 type="text"
                 placeholder="Your name"
-                className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100/70"
               />
             </div>
 
@@ -62,7 +62,7 @@ export default function SignupPage() {
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100/70"
               />
             </div>
 
@@ -78,13 +78,13 @@ export default function SignupPage() {
                 id="password"
                 type="password"
                 placeholder="Create a password"
-                className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100/70"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white transition hover:bg-indigo-700"
+              className="w-full rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-700 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 active:translate-y-0"
             >
               Create Account
             </button>
