@@ -471,6 +471,8 @@ Before submission, the production flow should be checked for:
 - [✅] Responsive layout checked on desktop and mobile
 - [✅] Accessibility audit completed with Lighthouse — 100/100
 - [✅] Lighthouse performance audit completed
+- [✅] Error states and fallback behavior verified
+- [✅] Health check endpoint available and verified
 
 
 ### Error Handling and Safe Failure
